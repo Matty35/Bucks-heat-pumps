@@ -36,14 +36,19 @@ identified in `research/competitor-analysis.md`.
 │   └── /contact.html                      Conversion page: survey booking form, phone, service area
 │
 └── NOT IN NAV — /guides/ silo (in-content links only)
-    ├── /guides/9000-heat-pump-grant-oil-lpg.html
+    ├── /guides/9000-pound-heat-pump-grant-oil-lpg.html
     │       P1 gap. The 21 July 2026 £9,000 oil/LPG uplift: who qualifies,
     │       deadline (31 Mar 2027), off-gas-grid Bucks villages angle.
     │       Links to: /oil-boiler-replacement.html, /boiler-upgrade-scheme.html
-    ├── /guides/heat-pump-running-costs-vs-oil.html
-    │       P2 gap. Worked example for a typical oil-heated Bucks village
-    │       house; payback under the £9,000 grant.
-    │       Links to: /oil-boiler-replacement.html
+    ├── /guides/heat-pump-running-costs-buckinghamshire.html
+    │       P2 gap. Running costs vs oil, LPG, gas and electric at 2026
+    │       tariffs; SCOP explained; heat pump tariffs.
+    │       Links to: /oil-boiler-replacement.html, /air-source-heat-pumps.html,
+    │       /boiler-upgrade-scheme.html
+    ├── /guides/heat-pump-cost-guide.html
+    │       Installed prices by property type (2-bed cottage → 5-bed
+    │       farmhouse); price drivers; grant maths in 3 worked scenarios.
+    │       Links to: all three service pages, /boiler-upgrade-scheme.html
     ├── /guides/heat-pump-planning-permission-noise.html
     │       P3 gap. Permitted development after the May 2025 rule change
     │       (1 m boundary rule scrapped), MCS 020 noise assessment, unit
