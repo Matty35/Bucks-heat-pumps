@@ -320,6 +320,73 @@ section { padding-block: var(--space-12); }
 /* Alternating section background */
 .alt { background: var(--frost); }
 
+/* Internal page hero (smaller than homepage hero) */
+.page-hero {
+  background: var(--frost);
+  padding-block: var(--space-12);
+}
+.page-hero h1 { font-size: var(--text-3xl); }
+
+.breadcrumb {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  margin-bottom: var(--space-4);
+}
+.breadcrumb a { color: var(--ink-soft); }
+.breadcrumb span { color: var(--copper); padding-inline: var(--space-1); }
+
+/* Long-form article layout */
+.prose { padding-block: var(--space-12); }
+.prose .container > p,
+.prose .faq-answer { max-width: 46rem; }
+.prose h2 { margin-top: var(--space-12); }
+.prose h2:first-of-type { margin-top: 0; }
+.prose .process-steps,
+.prose .compare { margin-bottom: var(--space-8); }
+.prose details { border-bottom: 1px solid var(--line); }
+.prose details:first-of-type { border-top: 1px solid var(--line); }
+.prose summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 44px;
+  padding: var(--space-4) var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.prose summary::-webkit-details-marker { display: none; }
+.prose summary::after {
+  content: "+";
+  font-family: var(--font-mono);
+  color: var(--copper);
+  flex-shrink: 0;
+}
+.prose details[open] summary::after { content: "–"; }
+.prose .faq-answer {
+  padding: 0 var(--space-2) var(--space-4);
+  color: var(--ink-soft);
+}
+
+/* Mobile-only sticky tap-to-call bar */
+.sticky-call {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: var(--space-2) var(--space-4);
+  background: var(--warm-white);
+  border-top: 1px solid var(--line);
+}
+.sticky-call .btn { width: 100%; justify-content: center; }
+/* keep page content clear of the bar */
+body:has(.sticky-call) { padding-bottom: var(--space-16); }
+
 .card-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -499,6 +566,10 @@ section { padding-block: var(--space-12); }
 
 @media (min-width: 768px) {
   .container { padding-inline: var(--space-6); }
+
+  /* Sticky call bar is mobile-only; header phone takes over */
+  .sticky-call { display: none; }
+  body:has(.sticky-call) { padding-bottom: 0; }
 
   .nav-toggle { display: none; }
   .logo { font-size: var(--text-lg); }
