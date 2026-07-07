@@ -372,6 +372,54 @@ section { padding-block: var(--space-12); }
   color: var(--ink-soft);
 }
 
+/* Contact page: form + info columns */
+.contact-body { padding-block: var(--space-12); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+.contact-info-col h3 {
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-2);
+}
+.contact-info-col address { font-style: normal; margin-bottom: var(--space-4); }
+.contact-info-col .process-steps { margin-top: var(--space-4); grid-template-columns: 1fr; gap: var(--space-4); }
+.contact-info-col .process-steps h3 { margin-top: 0; }
+
+.quote-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+.field { display: flex; flex-direction: column; gap: var(--space-1); }
+.field label {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+.field .optional { color: var(--ink-soft); font-weight: 400; }
+.quote-form input,
+.quote-form select,
+.quote-form textarea {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--ink);
+  background: var(--warm-white);
+  border: 1px solid var(--ink-soft);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  min-height: 44px; /* tap target */
+}
+.quote-form textarea { min-height: auto; resize: vertical; }
+.quote-form button { justify-self: start; }
+.form-note {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  margin: 0;
+}
+
 /* Mobile-only sticky tap-to-call bar */
 .sticky-call {
   position: fixed;
@@ -570,6 +618,10 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
   /* Sticky call bar is mobile-only; header phone takes over */
   .sticky-call { display: none; }
   body:has(.sticky-call) { padding-bottom: 0; }
+
+  .contact-grid { grid-template-columns: 3fr 2fr; }
+  .quote-form { grid-template-columns: 1fr 1fr; }
+  .field-wide, .quote-form button, .form-note { grid-column: 1 / -1; }
 
   .nav-toggle { display: none; }
   .logo { font-size: var(--text-lg); }
