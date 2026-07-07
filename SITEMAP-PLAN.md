@@ -49,15 +49,28 @@ identified in `research/competitor-analysis.md`.
     │       Installed prices by property type (2-bed cottage → 5-bed
     │       farmhouse); price drivers; grant maths in 3 worked scenarios.
     │       Links to: all three service pages, /boiler-upgrade-scheme.html
-    ├── /guides/heat-pump-planning-permission-noise.html
-    │       P3 gap. Permitted development after the May 2025 rule change
-    │       (1 m boundary rule scrapped), MCS 020 noise assessment, unit
-    │       volume limits, Buckinghamshire Council context.
-    │       Links to: /air-source-heat-pumps.html
-    ├── /guides/heat-pumps-listed-buildings-conservation-areas.html
-    │       P4 gap. Listed building consent, conservation villages, Chilterns
-    │       National Landscape, high-temperature units for older stock.
-    │       Links to: /air-source-heat-pumps.html, /contact.html
+    ├── /guides/heat-pump-planning-permission-buckinghamshire.html
+    │       P3 + P4 gaps combined. Permitted development after the May 2025
+    │       rule change (1 m boundary rule scrapped), MCS 020 noise limit,
+    │       conservation areas (Chilterns villages, Aylesbury old town), and
+    │       a dedicated #listed-buildings section (consent process).
+    │       Links to: /air-source-heat-pumps.html, /boiler-upgrade-scheme.html,
+    │       noise + old-houses guides
+    ├── /guides/do-heat-pumps-work-in-old-houses.html
+    │       Suitability for pre-1980s/solid-wall/rural stock; insulation-first
+    │       logic; EPC recommendations rule; radiator maths; high-temp units.
+    │       Links to: /air-source-heat-pumps.html, /oil-boiler-replacement.html,
+    │       /boiler-upgrade-scheme.html, planning + costs guides
+    ├── /guides/heat-pump-vs-oil-boiler.html
+    │       Head-to-head decision table (10 factors, winner per row); honest
+    │       "when the boiler wins" section; hybrid exclusion.
+    │       Links to: /oil-boiler-replacement.html, /boiler-upgrade-scheme.html,
+    │       £9,000 + running-costs + cost + old-houses guides
+    ├── /guides/heat-pump-noise-guide.html
+    │       Real dB table (sound power vs pressure), R290 units, placement
+    │       tactics, defrost noise, neighbour reassurance.
+    │       Links to: /air-source-heat-pumps.html, /boiler-upgrade-scheme.html,
+    │       planning guide
     └── /guides/air-to-air-heat-pump-grant.html
             P5 gap. The £2,500 air-to-air BUS route vs the £7,500/£9,000
             air-to-water route; residential-only rules; full-replacement rule.
