@@ -77,16 +77,34 @@ identified in `research/competitor-analysis.md`.
             Links to: /air-to-air-heat-pumps.html, /boiler-upgrade-scheme.html
 ```
 
+## Location pages (built — footer-linked only)
+
+Exactly four, each with genuinely local content (housing stock by estate/era,
+5–8 named off-grid villages, town-specific conservation notes, one worked
+grant scenario). Linked from the footer "Areas We Cover" column on every
+page — deliberately NOT from the homepage body or main nav.
+
+- /heat-pumps-aylesbury.html          Bedgrove/Southcourt/old town + Weedon,
+                                      Hardwick, Whitchurch, Oving, N. Marston,
+                                      Quainton, Cuddington, Dinton
+- /heat-pumps-buckingham.html         Georgian centre/Page Hill/Lace Hill +
+                                      Gawcott, Tingewick, Padbury, Maids
+                                      Moreton, Akeley, Thornborough,
+                                      Leckhampstead, the Lillingstones
+- /heat-pumps-princes-risborough.html Town/Princes Estate + ridge villages:
+                                      Lacey Green, Loosley Row, Speen, Bledlow
+                                      Ridge, Saunderton, Whiteleaf, Ilmer,
+                                      Bledlow (AONB angle)
+- /heat-pumps-wendover.html           High Street CA/Halton + The Lee, Lee
+                                      Common, South Heath, Dunsmore, St
+                                      Leonards, Cholesbury, Wendover Dean,
+                                      Ellesborough (LPG angle)
+
 ## Future expansion (not built yet)
 
-- **Location pages** (phase 2): genuinely local pages for Aylesbury, Buckingham,
-  Wendover, Princes Risborough, Winslow — each anchored by a named local case
-  study, not template copy. Add to nav via a "Areas" dropdown only once real
-  content exists.
 - **Case studies** (phase 2): `/case-studies/` — named village, heat loss
   numbers, before/after running costs, photos. Feeds trust signals identified
   as the competitor bar (P7).
-- **sitemap.xml**: generate once pages have content; referenced from robots.txt.
 
 ## Nav spec (as implemented on the homepage)
 
