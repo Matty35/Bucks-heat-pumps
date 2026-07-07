@@ -354,6 +354,14 @@ section { padding-block: var(--space-12); }
   color: var(--ink-soft);
   margin-bottom: var(--space-4);
 }
+
+/* Freshness line on guides */
+.last-updated {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  margin-bottom: var(--space-3);
+}
 .breadcrumb a { color: var(--ink-soft); }
 .breadcrumb span { color: var(--copper); padding-inline: var(--space-1); }
 
@@ -607,6 +615,10 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
   font-weight: 700;
   font-size: var(--text-lg);
   color: var(--warm-white);
+  margin-bottom: var(--space-2);
+}
+.footer-desc {
+  max-width: 26rem;
   margin-bottom: var(--space-2);
 }
 .footer-heading {
