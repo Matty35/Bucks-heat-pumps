@@ -6,8 +6,8 @@
    the tokens block.
    ========================================================================== */
 
-/* Fonts: Sora (display), Source Serif 4 (body). display=swap in URL. */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
+/* Fonts (Sora + Source Serif 4) load via <link> in each page's head with
+   display=swap — kept out of this file so CSS parsing never blocks on them. */
 
 /* --------------------------------------------------------------------------
    1. Design tokens
@@ -16,9 +16,11 @@
   /* Palette */
   --ink:        #1E2A32;  /* deep slate — primary text, footer */
   --warm-white: #FAF8F5;  /* page background */
-  --copper:     #B4642D;  /* accent — CTAs and key data only */
-  --copper-deep:#8F4E21;  /* hover/active state for copper */
-  --sage:       #7A8B6F;  /* secondary — eco cues without cliché green */
+  --copper:     #B4642D;  /* accent — decorative uses only (rules, borders, markers) */
+  --copper-deep:#8F4E21;  /* copper for TEXT and CTA backgrounds — 6.0:1 on warm-white */
+  --copper-cta-hover:#6E3C19; /* CTA hover — 8.5:1 with white text */
+  --sage:       #7A8B6F;  /* secondary — decorative only (3.1:1, fails as text) */
+  --sage-text:  #5D6B52;  /* sage for text — 4.8:1 on frost */
   --frost:      #E8EDF0;  /* section alternation, cool contrast */
 
   /* Derived tints (stay within palette family) */
@@ -142,6 +144,25 @@ h1::after,
   background: linear-gradient(90deg, var(--frost) 0%, var(--copper) 100%);
 }
 
+/* Skip-to-content: visually hidden until keyboard focus */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--warm-white);
+  padding: var(--space-3) var(--space-4);
+  border-radius: 0 0 var(--radius-md) 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 0;
+  color: var(--warm-white);
+}
+
 /* --------------------------------------------------------------------------
    4. Buttons & focus
    -------------------------------------------------------------------------- */
@@ -162,10 +183,10 @@ h1::after,
 }
 
 .btn-primary {
-  background: var(--copper);
+  background: var(--copper-deep);
   color: var(--warm-white);
 }
-.btn-primary:hover { background: var(--copper-deep); color: var(--warm-white); }
+.btn-primary:hover { background: var(--copper-cta-hover); color: var(--warm-white); }
 
 .btn-secondary {
   background: transparent;
@@ -219,11 +240,11 @@ select:focus-visible {
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--warm-white);
-  background: var(--copper);
+  background: var(--copper-deep);
   text-decoration: none;
   white-space: nowrap;
 }
-.header-phone:hover { background: var(--copper-deep); color: var(--warm-white); }
+.header-phone:hover { background: var(--copper-cta-hover); color: var(--warm-white); }
 
 /* Mobile: nav's toggle and menu participate directly in the header row,
    so the order is logo | phone (top-right) | toggle, menu drops below. */
@@ -277,12 +298,12 @@ select:focus-visible {
 .main-nav a:hover { color: var(--copper-deep); }
 
 .nav-cta {
-  background: var(--copper);
+  background: var(--copper-deep);
   color: var(--warm-white) !important;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-md);
 }
-.nav-cta:hover { background: var(--copper-deep); }
+.nav-cta:hover { background: var(--copper-cta-hover); }
 
 /* --------------------------------------------------------------------------
    6. Sections
@@ -312,7 +333,7 @@ section { padding-block: var(--space-12); }
   font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--sage);
+  color: var(--sage-text);
 }
 .hero-trust li { display: flex; align-items: center; gap: var(--space-2); }
 .hero-trust li + li::before { content: "·"; color: var(--copper); }
@@ -363,7 +384,7 @@ section { padding-block: var(--space-12); }
 .prose summary::after {
   content: "+";
   font-family: var(--font-mono);
-  color: var(--copper);
+  color: var(--copper-deep);
   flex-shrink: 0;
 }
 .prose details[open] summary::after { content: "–"; }
@@ -517,7 +538,7 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--copper);
+  color: var(--copper-deep);
   margin-bottom: var(--space-1);
 }
 .process-steps p { color: var(--ink-soft); font-size: var(--text-base); }
@@ -546,7 +567,7 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
 .faq summary::after {
   content: "+";
   font-family: var(--font-mono);
-  color: var(--copper);
+  color: var(--copper-deep);
   flex-shrink: 0;
 }
 .faq details[open] summary::after { content: "–"; }
