@@ -1,10 +1,21 @@
 # Design QA — bucksheatpumps.co.uk
 
-Audited: all 19 pages × 3 viewports (360 / 768 / 1280 px), headless Chromium,
-measurements taken after the full stylesheet applies. Audit scripts:
-`qa_audit2.js` + `sticky_check.js` (session scratchpad; re-runnable).
+Audited: all 20 pages (19 content pages + 404.html) × 3 viewports
+(360 / 768 / 1280 px), headless Chromium, measurements taken after the full
+stylesheet applies. Audit scripts: `qa_audit2.js` + `sticky_check.js`
+(session scratchpad; re-runnable).
 
-**Final result: zero issues at all three widths across all 19 pages.**
+**Final result: zero issues at all three widths across all 20 pages.**
+
+Re-verified after the favicon/404/README changes touched every page head:
+
+- Overflow / tap targets / sub-16px text / hero fit: 0 findings at 360, 768, 1280
+- Sticky call bar: 14px clearance above the last footer line at full scroll
+- FAQ accordions (functional test): open on click ✅ close on click ✅
+  open via keyboard Enter ✅ focusable with visible ring ✅
+- Link crawl (20 pages, including anchors and asset hrefs): 0 broken
+- 404.html: skip link, `#main`, one H1, no sticky bar (intentional — no
+  body padding reserved), noindexed, in no sitemap
 
 ## Responsive & interaction fixes
 
