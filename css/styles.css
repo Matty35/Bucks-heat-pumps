@@ -33,13 +33,13 @@
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Type scale (1.25 ratio, fluid at display sizes) */
-  --text-sm:   0.875rem;
+  --text-sm:   1rem;      /* 16px floor on mobile; 0.875rem from 768px (see media) */
   --text-base: 1.0625rem;                      /* serif body reads best slightly larger */
   --text-lg:   1.25rem;
   --text-xl:   1.5625rem;
   --text-2xl:  clamp(1.75rem, 1.4rem + 1.5vw, 1.953rem);
-  --text-3xl:  clamp(2rem, 1.5rem + 2.2vw, 2.441rem);
-  --text-4xl:  clamp(2.25rem, 1.6rem + 3vw, 3.052rem);
+  --text-3xl:  clamp(1.75rem, 1.3rem + 2.2vw, 2.441rem);
+  --text-4xl:  clamp(2rem, 1.35rem + 3vw, 3.052rem);
 
   --leading-tight: 1.15;
   --leading-body: 1.65;
@@ -114,12 +114,12 @@ p { margin-bottom: var(--space-4); }
 p:last-child { margin-bottom: 0; }
 
 a { color: var(--copper-deep); }
-a:hover { color: var(--copper); }
+a:hover { color: var(--copper-cta-hover); }
 
 /* Data callouts — prices, temperatures, flow rates. Mono for precision. */
 .data {
   font-family: var(--font-mono);
-  font-size: 0.9em;
+  font-size: 1em; /* 0.9em from 768px */
   font-weight: 600;
   color: var(--copper-deep);
   white-space: nowrap;
@@ -127,8 +127,7 @@ a:hover { color: var(--copper); }
 
 /* Signature element: temperature gradient rule.
    Used under H1s and section headers ONLY — no other decoration. */
-h1::after,
-.section-title::after {
+h1::after {
   content: "";
   display: block;
   width: var(--temp-rule-width);
@@ -136,12 +135,6 @@ h1::after,
   margin-top: var(--space-3);
   background: var(--temp-rule);
   border-radius: var(--radius-sm);
-}
-
-/* Inverted contexts (ink backgrounds) flip the rule's start colour to frost */
-.on-ink h1::after,
-.on-ink .section-title::after {
-  background: linear-gradient(90deg, var(--frost) 0%, var(--copper) 100%);
 }
 
 /* Skip-to-content: visually hidden until keyboard focus */
@@ -201,7 +194,9 @@ button:focus-visible,
 .btn:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
-select:focus-visible {
+select:focus-visible,
+summary:focus-visible,
+[tabindex="0"]:focus-visible {
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
@@ -237,7 +232,7 @@ select:focus-visible {
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-md);
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--warm-white);
   background: var(--copper-deep);
@@ -245,6 +240,15 @@ select:focus-visible {
   white-space: nowrap;
 }
 .header-phone:hover { background: var(--copper-cta-hover); color: var(--warm-white); }
+
+/* Very narrow screens: drop the decorative icon so the phone keeps its
+   top-right slot beside the logo at 16px text */
+@media (max-width: 419px) {
+  .site-header .container { column-gap: var(--space-2); }
+  .logo { font-size: 1rem; }
+  .header-phone { padding-inline: var(--space-2); }
+  .header-phone span[aria-hidden] { display: none; }
+}
 
 /* Mobile: nav's toggle and menu participate directly in the header row,
    so the order is logo | phone (top-right) | toggle, menu drops below. */
@@ -254,6 +258,9 @@ select:focus-visible {
 
 .logo {
   order: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px; /* tap target */
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--text-base);
@@ -312,12 +319,12 @@ section { padding-block: var(--space-12); }
 
 .hero {
   background: var(--frost);
-  padding-block: var(--space-16);
+  padding-block: var(--space-6) var(--space-8); /* fits one 360x740 viewport with header */
 }
 .hero-sub {
   max-width: 44rem;
-  margin-block: var(--space-4) var(--space-6);
-  font-size: var(--text-lg);
+  margin-block: var(--space-3) var(--space-4); /* larger from 768px */
+  font-size: var(--text-base); /* var(--text-lg) from 768px */
   color: var(--ink-soft);
 }
 .hero-ctas { display: flex; gap: var(--space-4); flex-wrap: wrap; }
@@ -329,14 +336,14 @@ section { padding-block: var(--space-12); }
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2) var(--space-6);
-  margin-top: var(--space-6);
+  margin-top: var(--space-4); /* space-6 from 768px */
   font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--sage-text);
 }
 .hero-trust li { display: flex; align-items: center; gap: var(--space-2); }
-.hero-trust li + li::before { content: "·"; color: var(--copper); }
+.hero-trust li + li::before { content: "·"; color: var(--ink-soft); }
 
 /* Alternating section background */
 .alt { background: var(--frost); }
@@ -344,7 +351,7 @@ section { padding-block: var(--space-12); }
 /* Internal page hero (smaller than homepage hero) */
 .page-hero {
   background: var(--frost);
-  padding-block: var(--space-12);
+  padding-block: var(--space-8); /* var(--space-12) from 768px */
 }
 .page-hero h1 { font-size: var(--text-3xl); }
 
@@ -362,8 +369,13 @@ section { padding-block: var(--space-12); }
   color: var(--ink-soft);
   margin-bottom: var(--space-3);
 }
-.breadcrumb a { color: var(--ink-soft); }
-.breadcrumb span { color: var(--copper); padding-inline: var(--space-1); }
+.breadcrumb a {
+  color: var(--ink-soft);
+  display: inline-block;
+  padding-block: var(--space-3); /* 44px hit area */
+  margin-block: calc(-1 * var(--space-3));
+}
+.breadcrumb span { color: var(--ink-soft); padding-inline: var(--space-1); }
 
 /* Long-form article layout */
 .prose { padding-block: var(--space-12); }
@@ -408,6 +420,8 @@ section { padding-block: var(--space-12); }
   grid-template-columns: 1fr;
   gap: var(--space-12);
 }
+.contact-grid > * { min-width: 0; } /* prevent grid blowout from long unbreakable links */
+.contact-info-col a { overflow-wrap: anywhere; }
 .contact-info-col h3 {
   margin-top: var(--space-8);
   margin-bottom: var(--space-2);
@@ -476,7 +490,13 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
   padding: var(--space-6);
   border-top: var(--temp-rule-height) solid var(--sage);
 }
-.card a { color: var(--ink); text-decoration: none; }
+.card a {
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-block;
+  padding-block: var(--space-3); /* 44px hit area */
+  margin-block: calc(-1 * var(--space-3));
+}
 .card a:hover { color: var(--copper-deep); }
 .card p { color: var(--ink-soft); font-size: var(--text-base); }
 
@@ -492,6 +512,19 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
 
 /* Running-cost comparison — mono data on hairline table */
 .compare { margin-top: var(--space-6); }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 767.98px) {
+  /* 3+ column tables keep readable columns and scroll instead of crushing */
+  .table-scroll:has(th:nth-child(3)) .compare-table { min-width: 560px; }
+  .compare:has(th:nth-child(3))::before {
+    content: "Swipe to see the full table \2192";
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    margin-bottom: var(--space-2);
+  }
+}
 .compare figcaption {
   font-size: var(--text-sm);
   color: var(--ink-soft);
@@ -586,7 +619,6 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
 }
 
 .cta-final { text-align: center; }
-.cta-final .section-title::after { margin-inline: auto; }
 .cta-final p {
   max-width: 40rem;
   margin-inline: auto;
@@ -603,13 +635,16 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
 .site-footer a {
   color: var(--frost);
   display: inline-block;
-  padding-block: var(--space-1); /* keeps footer links comfortably tappable */
+  padding-block: var(--space-3); /* 44px+ hit area */
+  margin-block: calc(-1 * var(--space-2));
 }
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-8);
 }
+.footer-grid > * { min-width: 0; }
+.site-footer address a { overflow-wrap: anywhere; }
 .footer-brand {
   font-family: var(--font-display);
   font-weight: 700;
@@ -646,6 +681,12 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
 }
 
 @media (min-width: 768px) {
+  :root { --text-sm: 0.875rem; }
+  .data { font-size: 0.9em; }
+  .page-hero { padding-block: var(--space-12); }
+  .hero-sub { font-size: var(--text-lg); margin-block: var(--space-4) var(--space-6); }
+  .hero-trust { margin-top: var(--space-6); }
+
   .container { padding-inline: var(--space-6); }
 
   /* Sticky call bar is mobile-only; header phone takes over */
@@ -658,7 +699,6 @@ body:has(.sticky-call) { padding-bottom: var(--space-16); }
 
   .nav-toggle { display: none; }
   .logo { font-size: var(--text-lg); }
-  .header-phone { font-size: var(--text-sm); }
   /* Tablet: logo left + phone top-right on row 1; nav on its own row */
   .main-nav ul {
     display: flex;
